@@ -1,0 +1,4 @@
+# SoccerRobotScoreboard
+Androidアプリと連携して赤チームと青チームのスコアを表示するC#アプリ
+
+Bluetoothで受信した文字列を解析して表示を変更してるから専用のアプリじゃなくても動くはず
