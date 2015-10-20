@@ -30,16 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             this.labelRed = new System.Windows.Forms.Label();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.ToolStripMenuItemMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItemSetting = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
             this.labelBlue = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
-            this.menuStrip1.SuspendLayout();
+            this.comboBoxPort = new System.Windows.Forms.ComboBox();
+            this.buttonConnect = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelRed
@@ -56,42 +52,6 @@
             this.labelRed.TabIndex = 0;
             this.labelRed.Text = "0";
             this.labelRed.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.BackColor = System.Drawing.SystemColors.Control;
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuItemMenu,
-            this.ToolStripMenuItemExit});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1920, 26);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // ToolStripMenuItemMenu
-            // 
-            this.ToolStripMenuItemMenu.BackColor = System.Drawing.SystemColors.Control;
-            this.ToolStripMenuItemMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuItemSetting});
-            this.ToolStripMenuItemMenu.Name = "ToolStripMenuItemMenu";
-            this.ToolStripMenuItemMenu.Size = new System.Drawing.Size(68, 22);
-            this.ToolStripMenuItemMenu.Text = "メニュー";
-            // 
-            // ToolStripMenuItemSetting
-            // 
-            this.ToolStripMenuItemSetting.BackColor = System.Drawing.SystemColors.Control;
-            this.ToolStripMenuItemSetting.Name = "ToolStripMenuItemSetting";
-            this.ToolStripMenuItemSetting.Size = new System.Drawing.Size(100, 22);
-            this.ToolStripMenuItemSetting.Text = "設定";
-            this.ToolStripMenuItemSetting.Click += new System.EventHandler(this.ToolStripMenuItemSetting_Click);
-            // 
-            // ToolStripMenuItemExit
-            // 
-            this.ToolStripMenuItemExit.Name = "ToolStripMenuItemExit";
-            this.ToolStripMenuItemExit.Size = new System.Drawing.Size(44, 22);
-            this.ToolStripMenuItemExit.Text = "終了";
-            this.ToolStripMenuItemExit.Click += new System.EventHandler(this.ToolStripMenuItemExit_Click);
             // 
             // labelBlue
             // 
@@ -132,25 +92,43 @@
             this.label2.Text = "サッカーロボット";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // comboBoxPort
+            // 
+            this.comboBoxPort.FormattingEnabled = true;
+            this.comboBoxPort.Location = new System.Drawing.Point(12, 12);
+            this.comboBoxPort.Name = "comboBoxPort";
+            this.comboBoxPort.Size = new System.Drawing.Size(121, 20);
+            this.comboBoxPort.TabIndex = 5;
+            // 
+            // buttonConnect
+            // 
+            this.buttonConnect.Location = new System.Drawing.Point(139, 10);
+            this.buttonConnect.Name = "buttonConnect";
+            this.buttonConnect.Size = new System.Drawing.Size(75, 23);
+            this.buttonConnect.TabIndex = 6;
+            this.buttonConnect.Text = "ポート開放";
+            this.buttonConnect.UseVisualStyleBackColor = true;
+            this.buttonConnect.Click += new System.EventHandler(this.buttonConnect_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1920, 1080);
+            this.Controls.Add(this.buttonConnect);
+            this.Controls.Add(this.comboBoxPort);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.labelBlue);
             this.Controls.Add(this.labelRed);
-            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MainMenuStrip = this.menuStrip1;
+            this.KeyPreview = true;
             this.Name = "FormMain";
             this.Text = "サッカーロボット得点板";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
+            this.Load += new System.EventHandler(this.FormMain_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormMain_KeyDown);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -159,15 +137,12 @@
         #endregion
 
         private System.Windows.Forms.Label labelRed;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemMenu;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemSetting;
         private System.Windows.Forms.Label labelBlue;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemExit;
         private System.IO.Ports.SerialPort serialPort1;
+        private System.Windows.Forms.ComboBox comboBoxPort;
+        private System.Windows.Forms.Button buttonConnect;
     }
 }
 
