@@ -13,13 +13,15 @@ namespace SoccerRobotScoreboard2
 {
     public partial class FormMain : Form
     {
-        private SerialPort myPort = null;
+        SerialPort myPort = null;
+        String rData = null;
         int RedPoint = 0;
         int BluePoint = 0;
 
         public FormMain()
         {
             InitializeComponent();
+            this.buttonConnect.Focus();
         }
 
         public void SerialInit()
@@ -47,10 +49,60 @@ namespace SoccerRobotScoreboard2
             }
         }
 
-
-        private void ToolStripMenuItemExit_Click(object sender, EventArgs e)
+        private void receivedDataAdd(object sender, EventArgs e)
         {
-            this.Close();
+            if (rData.Equals("AR"))
+            {
+                RedPoint = 0;
+                BluePoint = 0;
+                DispPoint();
+            }
+            else if (rData.Equals("RR"))
+            {
+                RedPoint = 0;
+                DispPoint();
+            }
+            else if (rData.Equals("BR"))
+            {
+                BluePoint = 0;
+                DispPoint();
+            }
+
+            else if (rData.Equals("RI"))
+            {
+                RedPoint++;
+                if (RedPoint >= 10) RedPoint = 9;
+                DispPoint();
+            }
+            else if (rData.Equals("RD"))
+            {
+                RedPoint--;
+                if (RedPoint < 0) RedPoint = 0;
+                DispPoint();
+            }
+            else if (rData.Equals("BI"))
+            {
+                BluePoint++;
+                if (BluePoint >= 10) BluePoint = 9;
+                DispPoint();
+            }
+            else if (rData.Equals("BD"))
+            {
+                BluePoint--;
+                if (BluePoint < 0) BluePoint = 0;
+                DispPoint();
+            }
+            else if (rData.Substring(0, 1) == "T")
+            {
+                label2.Text = rData.Substring(1, rData.Length-1);
+            }
+        }
+
+        private void serialPortBluetooth_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            myPort = (SerialPort)sender;
+            rData = myPort.ReadExisting();
+            this.Invoke(new EventHandler(receivedDataAdd));
         }
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
@@ -90,11 +142,14 @@ namespace SoccerRobotScoreboard2
                 }
                 else
                 {
+                    myPort.DataReceived += new SerialDataReceivedEventHandler(serialPortBluetooth_DataReceived);
                     MessageBox.Show("ポート開放完了", "ポート開放", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     comboBoxPort.Visible = false;
                     buttonConnect.Visible = false;
                 }
             }
         }
+
+
     }
 }

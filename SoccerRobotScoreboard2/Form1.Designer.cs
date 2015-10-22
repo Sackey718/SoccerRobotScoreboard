@@ -33,7 +33,7 @@
             this.labelBlue = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
+            this.serialPortBluetooth = new System.IO.Ports.SerialPort(this.components);
             this.comboBoxPort = new System.Windows.Forms.ComboBox();
             this.buttonConnect = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -92,6 +92,10 @@
             this.label2.Text = "サッカーロボット";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // serialPortBluetooth
+            // 
+            this.serialPortBluetooth.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPortBluetooth_DataReceived);
+            // 
             // comboBoxPort
             // 
             this.comboBoxPort.FormattingEnabled = true;
@@ -99,6 +103,7 @@
             this.comboBoxPort.Name = "comboBoxPort";
             this.comboBoxPort.Size = new System.Drawing.Size(121, 20);
             this.comboBoxPort.TabIndex = 5;
+            this.comboBoxPort.Text = "COMポート選択";
             // 
             // buttonConnect
             // 
@@ -140,7 +145,7 @@
         private System.Windows.Forms.Label labelBlue;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.IO.Ports.SerialPort serialPort1;
+        private System.IO.Ports.SerialPort serialPortBluetooth;
         private System.Windows.Forms.ComboBox comboBoxPort;
         private System.Windows.Forms.Button buttonConnect;
     }
